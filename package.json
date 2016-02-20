@@ -1,7 +1,7 @@
 {
   "name": "vimeo-takehome",
   "version": "1.0.0",
-  "description": "",
+  "description": "Duncan Regan's Vimeo take home test",
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive",
