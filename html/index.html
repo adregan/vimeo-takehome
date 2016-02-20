@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Duncan Regan's take home test</title>
+  <meta name="viewport" content="width=device-width">
+</head>
+<body>
+  <button id="logIn">Authorize with Vimeo</button>
+</body>
+  <script type="text/javascript">
+    (function(){
+      var logInButton = document.getElementById('logIn');
+      // Creates a 32 character alpha-numeric nonce
+      var state = Math.floor(Math.random() * Math.pow(10, 50)).toString(36);
+      // Store the state to verify response on oauth redirect
+      localStorage.setItem('state', state)
+
+      var params = {
+        response_type: 'code',
+        client_id: '09d9144f02a1bf08ba2e8b7a66e0f3213d3968bb',
+        redirect_uri: 'https://vimeo.duncanregan.com/app/',
+        state: state
+      }
+      // Builds the query string from the params obj
+      var queryString = Object.keys(params).map(key => {
+        return key + '=' + params[key];
+      }).join('&')
+
+      var oauthLink = 'https://api.vimeo.com/oauth/authorize?' + queryString;
+
+      var auth = (e) => {
+        e.preventDefault();
+        window.location = oauthLink;
+      }
+
+      logInButton.addEventListener('click', auth);
+    })()
+  </script>
+  <script type="text/javascript" src="/static/index.js"></script>
+</html>
