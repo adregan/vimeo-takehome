@@ -1,0 +1,33 @@
+{
+  "name": "vimeo-takehome",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "directories": "mkdir -p dist/static",
+    "js": "browserify -t babelify js/index.js > dist/static/index.js",
+    "html": "cp html/index.html dist/index.html",
+    "prebuild": "npm run test; npm run directories",
+    "build": "npm run js; npm run html",
+    "serve": "cd dist; http-server -p 7777",
+    "start": "npm run build; npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adregan/vimeo-takehome.git"
+  },
+  "author": "Duncan Regan",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/adregan/vimeo-takehome/issues"
+  },
+  "homepage": "https://github.com/adregan/vimeo-takehome#readme",
+  "dependencies": {
+    "babel-preset-react": "^6.5.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1"
+  }
+}
