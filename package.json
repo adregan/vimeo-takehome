@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-register --recursive",
     "directories": "mkdir -p dist/static",
     "js": "browserify -t babelify js/index.js > dist/static/index.js",
     "html": "cp html/index.html dist/index.html",
@@ -29,5 +29,10 @@
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1"
+  },
+  "devDependencies": {
+    "babel-register": "^6.5.2",
+    "expect": "^1.14.0",
+    "mocha": "^2.4.5"
   }
 }
