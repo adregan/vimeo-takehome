@@ -7,9 +7,10 @@
     "test": "mocha --compilers js:babel-register --recursive",
     "directories": "mkdir -p dist/static",
     "polyfills": "cp node_modules/whatwg-fetch/fetch.js dist/static/fetch.js",
-    "js": "browserify -t babelify js/index.js > dist/static/index.js",
+    "lint": "eslint js; eslint test",
+    "js": "browserify --debug -t babelify js/index.js > dist/static/index.js",
     "html": "cp html/index.html dist/index.html",
-    "prebuild": "npm test; npm run directories",
+    "prebuild": "npm run lint; npm test; npm run directories",
     "build": "npm run js; npm run polyfills; npm run html",
     "serve": "cd dist; http-server -p 7777",
     "start": "npm run build; npm run serve"
