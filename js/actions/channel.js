@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import vimeo, { CHANNEL, VIDEOS } from '../utils/vimeo';
 
 /* Action Types */
 export const CHANGE_CHANNEL = 'CHANGE_CHANNEL';
@@ -12,10 +13,16 @@ export const updateChannel = (channelData) => {
 
 export const changeChannel = (channelId) => {
   return dispatch => {
-  // Fetch channel/:channelId --> 
-  // dispatch updateChannel
-
-  // Fetch channel/:channelId/videos --> 
-  // dispatch updateVideos & updateCurrentVideo(videos[0])
+    Promise.all([
+      vimeo(channelId, CHANNEL),
+      vimeo(channelId, VIDEOS)
+    ])
+    .then(([channel, videos]) => {
+      console.log(channel);
+    // dispatch updateChannel
+      console.log(videos);
+    // dispatch updateVideos & updateCurrentVideo(videos[0])
+    })
+    .catch(err => console.error(err));
   };
 };
