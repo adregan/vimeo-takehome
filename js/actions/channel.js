@@ -9,3 +9,13 @@ export const updateChannel = (channelData) => {
   const channel = Immutable.Map(channelData);
   return {type: UPDATE_CHANNEL, channel};
 }
+
+export const changeChannel = (channelId) => {
+  return dispatch => {
+    // Fetch channel/:channelId --> 
+    // dispatch updateChannel
+
+    // Fetch channel/:channelId/videos --> 
+    // dispatch updateVideos & updateCurrentVideo(videos[0])
+  }
+}
