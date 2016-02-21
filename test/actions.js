@@ -2,6 +2,7 @@ import expect from 'expect';
 import Immutable from 'immutable';
 import { UPDATE_CHANNEL, updateChannel } from '../js/actions/channel';
 import { UPDATE_VIDEOS, updateVideos } from '../js/actions/videos';
+import { UPDATE_CURRENT_PAGE, updateCurrentPage } from '../js/actions/pagination';
 import range from '../js/utils/range';
 
 describe('Action Creators', () => {
@@ -34,6 +35,12 @@ describe('Action Creators', () => {
         const videos = Immutable.List(videoData)
         const expectedAction = {type: UPDATE_VIDEOS, videos};
         expect(updateVideos(videoData)).toEqual(expectedAction)
+  describe('pagination', () => {
+    describe('updateCurrentPage', () => {
+      it('should create an action to update the current page', () => {
+        const page = 16;
+        const expectedAction = {type: UPDATE_CURRENT_PAGE, page};
+        expect(updateCurrentPage(page)).toEqual(expectedAction);
       })
     })
   })
