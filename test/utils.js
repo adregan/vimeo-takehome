@@ -56,7 +56,7 @@ describe('Utils', () => {
     });
     it('should fetch channel videos by id', () => {
       const mockResponse = {total: 100, page: 1, paging: {}, per_page: 25, data: []};
-      fetchMock.mock('https://api.vimeo.com/channels/number-one', mockResponse);
+      fetchMock.mock('https://api.vimeo.com/channels/number-one?per_page=10&page=1', mockResponse);
       vimeo('number-one', VIDEOS)
         .then(data => {
           expect(data).toEqual(mockResponse);
@@ -72,6 +72,27 @@ describe('Utils', () => {
       }).toThrow(/Unsupported type: UNSUPPORTED/);
 
       fetchMock.restore();
+    });
+    it('should fetch videos from a given page', () => {
+      const page = 23;
+      const mockPage1 = {total: 100, page: 1, paging: {}, per_page: 10, data: []};
+      const mockResponse = {total: 100, page: page, paging: {}, per_page: 10, data: []};
+      fetchMock.mock(
+        'https://api.vimeo.com/channels/number-one?per_page=10&page=1',
+        mockPage1
+      );
+      fetchMock.mock(
+        `https://api.vimeo.com/channels/number-one?per_page=10&page=${page}`,
+        mockResponse
+      );
+
+      vimeo('number-one', VIDEOS, page)
+        .then(data => {
+          expect(data).toEqual(mockResponse);
+          expect(data.page).toEqual(page);
+          fetchMock.restore();
+        });
+
     });
   });
 });
