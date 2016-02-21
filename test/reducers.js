@@ -9,6 +9,8 @@ import { UPDATE_VIDEOS } from '../js/actions/videos';
 import { videos } from '../js/reducers/videos';
 import { UPDATE_CURRENT_VIDEO } from '../js/actions/currentVideo';
 import { currentVideo } from '../js/reducers/currentVideo';
+import { UPDATE_CURRENT_PAGE } from '../js/actions/pagination';
+import { currentPage } from '../js/reducers/currentPage';
 
 describe('Reducers', () => {
   describe('channel', () => {
@@ -53,6 +55,15 @@ describe('Reducers', () => {
 
       expect(currentVideo(Immutable.Map(), {type: UPDATE_CURRENT_VIDEO, video}))
         .toEqual(video);
+    });
+  });
+  describe('currentVideo', () => {
+    it('should return the initial state', () => {
+      expect(currentPage(undefined, {})).toEqual(1);
+    });
+    it('should handle the UPDATE_CURRENT_PAGE action', () => {
+      const page = 16;
+      expect(currentPage(23, {type: UPDATE_CURRENT_PAGE, page})).toEqual(page);
     });
   });
 });
