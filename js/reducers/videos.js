@@ -8,4 +8,4 @@ export const videos = (state = Immutable.List(), action) => {
     default:
       return state;
   }
-}
+};

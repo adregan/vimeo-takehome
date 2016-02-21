@@ -1,3 +1,5 @@
+/*eslint no-undef: 0*/
+
 import expect from 'expect';
 import Immutable from 'immutable';
 import { UPDATE_CHANNEL, updateChannel } from '../js/actions/channel';
@@ -19,29 +21,32 @@ describe('Action Creators', () => {
           header: 'https://duncanregan.com/cool_pic.png',
           usersCount: 100,
           videoCount: 4
-        }
+        };
         const channel = Immutable.Map(channelData);
         const expectedAction = {type: UPDATE_CHANNEL, channel};
         expect(updateChannel(channelData)).toEqual(expectedAction);
-      })
-    })
-  })
+      });
+    });
+  });
   describe('videos', () => {
     describe('updateVideos', () => {
       it('should create an action to update the videos', () => {
         const videoData = range(10).map(i => {
           return Immutable.Map({name: `Video ${i + 1}`});
-        })
-        const videos = Immutable.List(videoData)
+        });
+        const videos = Immutable.List(videoData);
         const expectedAction = {type: UPDATE_VIDEOS, videos};
-        expect(updateVideos(videoData)).toEqual(expectedAction)
+        expect(updateVideos(videoData)).toEqual(expectedAction);
+      });
+    });
+  });
   describe('pagination', () => {
     describe('updateCurrentPage', () => {
       it('should create an action to update the current page', () => {
         const page = 16;
         const expectedAction = {type: UPDATE_CURRENT_PAGE, page};
         expect(updateCurrentPage(page)).toEqual(expectedAction);
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});

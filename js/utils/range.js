@@ -15,6 +15,6 @@ const range = (start, end = null) => {
           .split('')
           .map((_, i) => i)
           .slice(start, end);
-} 
+};
 
 export default range;

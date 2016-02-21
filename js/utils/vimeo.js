@@ -14,7 +14,6 @@ const request = (channelId, type) => {
   }
   else {
     throw Error(`Unsupported type: ${type}`);
-    return;
   }
 
   const init = {
@@ -24,12 +23,12 @@ const request = (channelId, type) => {
 
   return new Promise((resolve, reject) => {
     fetch(url, init).then(resp => {
-        if (resp.ok) { return resp.json(); }
-        reject(Error('There was an error completing this request.'));
-      })
+      if (resp.ok) { return resp.json(); }
+      reject(Error('There was an error completing this request.'));
+    })
       .then(data => resolve(data))
       .catch(err => reject(err));
-  })
-}
+  });
+};
 
 export default request;

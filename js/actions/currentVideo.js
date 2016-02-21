@@ -1,5 +1,3 @@
-import Immutable from 'immutable';
-
 /* Action Types */
 export const UPDATE_CURRENT_VIDEO = 'UPDATE_CURRENT_VIDEO';
 
@@ -9,5 +7,5 @@ export const updateCurrentVideo = (index) => {
     const { videos } = getState();
     const video = videos.get(index);
     return {type: UPDATE_CURRENT_VIDEO, video};
-  }
-}
+  };
+};

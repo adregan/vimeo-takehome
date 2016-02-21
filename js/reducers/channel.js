@@ -8,4 +8,4 @@ export const channel = (state = Immutable.Map(), action) => {
     default:
       return state;
   }
-}
+};

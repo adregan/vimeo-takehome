@@ -8,4 +8,4 @@ export const currentVideo = (state = Immutable.Map(), action) => {
     default:
       return state;
   }
-}
+};
