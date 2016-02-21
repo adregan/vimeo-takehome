@@ -1,11 +1,19 @@
 /*eslint no-undef: 0*/
 
+import randomChannel from '../js/utils/randomChannel';
+import { channels } from '../js/config';
 import range from '../js/utils/range';
 import vimeo, { VIDEOS, CHANNEL } from '../js/utils/vimeo';
 import expect from 'expect';
 import fetchMock from 'fetch-mock';
 
 describe('Utils', () => {
+  describe('randomChannel', () => {
+    it('should return a random channel id from the list in config', () => {
+      const channel = randomChannel();
+      expect(channels).toInclude(channel);
+    });
+  });
   describe('range', () => {
     it('should produce an array of length n, starting at 0', () => {
       expect(range(10)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
