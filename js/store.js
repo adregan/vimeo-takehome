@@ -5,12 +5,12 @@ import { videos } from './reducers/videos';
 import { currentPage } from './reducers/currentPage';
 import { currentVideo } from './reducers/currentVideo';
 
-const app = combineReducers({
+const reducer = combineReducers({
   channel, videos, currentPage, currentVideo
 });
 
 const configureStore = (initialState) => {
-  const store = createStore(app, initialState, compose(
+  const store = createStore(reducer, initialState, compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : undefined
   ));
