@@ -28,6 +28,15 @@ describe('Action Creators', () => {
       });
     });
   });
+  describe('pagination', () => {
+    describe('updateCurrentPage', () => {
+      it('should create an action to update the current page', () => {
+        const page = 16;
+        const expectedAction = {type: UPDATE_CURRENT_PAGE, page};
+        expect(updateCurrentPage(page)).toEqual(expectedAction);
+      });
+    });
+  });
   describe('videos', () => {
     describe('updateVideos', () => {
       it('should create an action to update the videos', () => {
@@ -37,15 +46,6 @@ describe('Action Creators', () => {
         const videos = Immutable.List(videoData);
         const expectedAction = {type: UPDATE_VIDEOS, videos};
         expect(updateVideos(videoData)).toEqual(expectedAction);
-      });
-    });
-  });
-  describe('pagination', () => {
-    describe('updateCurrentPage', () => {
-      it('should create an action to update the current page', () => {
-        const page = 16;
-        const expectedAction = {type: UPDATE_CURRENT_PAGE, page};
-        expect(updateCurrentPage(page)).toEqual(expectedAction);
       });
     });
   });

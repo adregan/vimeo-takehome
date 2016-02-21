@@ -30,19 +30,13 @@ describe('Reducers', () => {
         .toEqual(exampleChannel);
     });
   });
-  describe('videos', () => {
+  describe('currentPage', () => {
     it('should return the initial state', () => {
-      expect(videos(undefined, {})).toEqual(Immutable.List());
+      expect(currentPage(undefined, {})).toEqual(1);
     });
-    it('should handle UPDATE_VIDEOS action', () => {
-      const state = Immutable.List();
-      const mockVideos = range(1, 15).map(i => {
-        return {title: `Video ${i}`};
-      });
-      const exampleVideos = Immutable.List(mockVideos.map(video => Immutable.Map(video)));
-
-      expect(videos(state, {type: UPDATE_VIDEOS, videos: exampleVideos}))
-        .toEqual(exampleVideos);
+    it('should handle the UPDATE_CURRENT_PAGE action', () => {
+      const page = 16;
+      expect(currentPage(23, {type: UPDATE_CURRENT_PAGE, page})).toEqual(page);
     });
   });
   describe('currentVideo', () => {
@@ -57,13 +51,19 @@ describe('Reducers', () => {
         .toEqual(video);
     });
   });
-  describe('currentVideo', () => {
+  describe('videos', () => {
     it('should return the initial state', () => {
-      expect(currentPage(undefined, {})).toEqual(1);
+      expect(videos(undefined, {})).toEqual(Immutable.List());
     });
-    it('should handle the UPDATE_CURRENT_PAGE action', () => {
-      const page = 16;
-      expect(currentPage(23, {type: UPDATE_CURRENT_PAGE, page})).toEqual(page);
+    it('should handle UPDATE_VIDEOS action', () => {
+      const state = Immutable.List();
+      const mockVideos = range(1, 15).map(i => {
+        return {title: `Video ${i}`};
+      });
+      const exampleVideos = Immutable.List(mockVideos.map(video => Immutable.Map(video)));
+
+      expect(videos(state, {type: UPDATE_VIDEOS, videos: exampleVideos}))
+        .toEqual(exampleVideos);
     });
   });
 });
