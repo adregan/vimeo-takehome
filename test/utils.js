@@ -1,5 +1,7 @@
 import range from '../js/utils/range';
+import vimeo, { VIDEOS, CHANNEL } from '../js/utils/vimeo';
 import expect from 'expect';
+import fetchMock from 'fetch-mock';
 
 describe('Utils', () => {
   describe('range', () => {
@@ -23,6 +25,50 @@ describe('Utils', () => {
       expect(range(7, 2)).toEqual([]);
       expect(range(20, 12)).toEqual([]);
       expect(range(92, 89).length).toEqual([]);
+    })
+  })
+  describe('vimeo', () => {
+    it('should fetch channel by id', () => {
+      const mockResponse = {
+        created_time: '2016-02-20T11:46:07+00:00',
+        description: 'Everything here is the best',
+        header: {},
+        link: 'https://vimeo.com/channels/number-one',
+        metadata: {},
+        modified_time: '2016-02-20T11:46:07+00:00',
+        name: '#1 Channel',
+        pictures: {},
+        privacy: {},
+        uri: '/channels/number-one',
+        user: {}
+      };
+
+      fetchMock.mock('https://api.vimeo.com/channels/number-one', mockResponse);
+
+      vimeo('number-one', CHANNEL)
+        .then(data => {
+          expect(data).toEqual(mockResponse);
+          expect(data.description).toEqual('Everything here is the best');
+          fetchMock.restore();
+        })
+    })
+    it('should fetch channel videos by id', () => {
+      const mockResponse = {total: 100, page: 1, paging: {}, per_page: 25, data: []};
+      fetchMock.mock('https://api.vimeo.com/channels/number-one', mockResponse);
+      vimeo('number-one', VIDEOS)
+        .then(data => {
+          expect(data).toEqual(mockResponse);
+          expect(data.total).toEqual(100);
+          fetchMock.restore();
+        })
+    })
+    it('should throw an error if sent an unsupported type', () => {
+      fetchMock.mock('https://api.vimeo.com/channels/number-one', {});
+
+      expect(() => {vimeo('number-one', 'UNSUPPORTED')})
+        .toThrow(/Unsupported type: UNSUPPORTED/)
+
+      fetchMock.restore();
     })
   })
 })
