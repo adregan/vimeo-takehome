@@ -5,6 +5,8 @@ import { UPDATE_CHANNEL } from '../js/actions/channel';
 import { channel } from '../js/reducers/channel';
 import { UPDATE_VIDEOS } from '../js/actions/videos';
 import { videos } from '../js/reducers/videos';
+import { UPDATE_CURRENT_VIDEO } from '../js/actions/currentVideo';
+import { currentVideo } from '../js/reducers/currentVideo';
 
 describe('Reducers', () => {
   describe('channel', () => {
@@ -39,4 +41,18 @@ describe('Reducers', () => {
         .toEqual(exampleVideos);
     })
   })
+  describe('currentVideo', () => {
+    it('should return the initial state', () => {
+      expect(currentVideo(undefined, {})).toEqual(Immutable.Map());
+    })
+    it('should handle UPDATE_CURRENT_VIDEO action', () => {
+      const state = Immutable.List();
+      const mockVideo = {title: 'Video 23'};
+      const video = Immutable.Map(mockVideo);
+
+      expect(currentVideo(Immutable.Map(), {type: UPDATE_CURRENT_VIDEO, video}))
+        .toEqual(video);
+    })
+  })
+
 })
