@@ -1,6 +1,6 @@
 import expect from 'expect'
 import Immutable from 'immutable';
-import { CHANGE_CHANNEL } from '../js/actions/channel';
+import { UPDATE_CHANNEL } from '../js/actions/channel';
 import { channel } from '../js/reducers/channel';
 
 describe('Reducers', () => {
@@ -8,7 +8,7 @@ describe('Reducers', () => {
     it('should return the initial state', () => {
       expect(channel(undefined, {})).toEqual(Immutable.Map());
     })
-    it('should handle CHANGE_CHANNEL action', () => {
+    it('should handle UPDATE_CHANNEL action', () => {
       const state = Immutable.Map();
       const exampleChannel = Immutable.Map({
           name: '#1 Channel',
@@ -17,7 +17,7 @@ describe('Reducers', () => {
           creator: 'Duncan Regan',
           header: 'https://duncanregan.com/cool_pic.png'
       });
-      expect(channel(state, {type: CHANGE_CHANNEL, channel: exampleChannel}))
+      expect(channel(state, {type: UPDATE_CHANNEL, channel: exampleChannel}))
         .toEqual(exampleChannel);
     })
   })
