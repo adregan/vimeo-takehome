@@ -1,13 +1,13 @@
 import expect from 'expect';
 import Immutable from 'immutable';
-import { CHANGE_CHANNEL, changeChannel } from '../js/actions/channel';
+import { UPDATE_CHANNEL, updateChannel } from '../js/actions/channel';
 import { UPDATE_VIDEOS, updateVideos } from '../js/actions/videos';
 import range from '../js/utils/range';
 
 describe('Action Creators', () => {
   describe('channel', () => {
-    describe('changeChannel', () => {
-      it('should create an action to change the channel', () => {
+    describe('updateChannel', () => {
+      it('should create an action to update the channel', () => {
         const channelData = {
           name: '#1 Channel',
           description: 'Everything here is the best',
@@ -20,8 +20,8 @@ describe('Action Creators', () => {
           videoCount: 4
         }
         const channel = Immutable.Map(channelData);
-        const expectedAction = {type: CHANGE_CHANNEL, channel};
-        expect(changeChannel(channelData)).toEqual(expectedAction);
+        const expectedAction = {type: UPDATE_CHANNEL, channel};
+        expect(updateChannel(channelData)).toEqual(expectedAction);
       })
     })
   })
