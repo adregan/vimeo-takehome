@@ -17,6 +17,7 @@ export const updateChannel = (channelData) => {
 
 export const changeChannel = (channelId) => {
   return dispatch => {
+    dispatch({type: CHANGE_CHANNEL, status: 'LOADING'});
     Promise.all([
       vimeo(channelId, CHANNEL),
       vimeo(channelId, VIDEOS)
@@ -31,6 +32,7 @@ export const changeChannel = (channelId) => {
       dispatch(updateVideos(videoData));
       dispatch(updateCurrentPage(page));
       dispatch(setCurrentVideo(currentVideo));
+      dispatch({type: CHANGE_CHANNEL, status: 'LOADED'});
     })
     .catch(err => console.error(err));
   };

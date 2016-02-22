@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { UPDATE_VIDEOS } from '../js/actions/videos';
 import { UPDATE_CURRENT_VIDEO, updateCurrentVideo } from '../js/actions/currentVideo';
 import { UPDATE_CURRENT_PAGE, changePage } from '../js/actions/pagination';
-import { UPDATE_CHANNEL, changeChannel} from '../js/actions/channel';
+import { UPDATE_CHANNEL, CHANGE_CHANNEL, changeChannel} from '../js/actions/channel';
 import fetchMock from 'fetch-mock';
 import mock from './mock';
 import { pageSize } from '../js/config';
@@ -18,10 +18,12 @@ describe('Async Action Creators', () => {
       it('should create and dispatch multiple actions to update the channel', () => {
         const currentVideo = mock.videos.get(0);
         const expectedActions = [
+          {type: CHANGE_CHANNEL, status: 'LOADING'},
           {type: UPDATE_CHANNEL, channel: mock.channel},
           {type: UPDATE_VIDEOS, videos: mock.videos},
           {type: UPDATE_CURRENT_PAGE, page: 1},
-          {type: UPDATE_CURRENT_VIDEO, video: currentVideo}
+          {type: UPDATE_CURRENT_VIDEO, video: currentVideo},
+          {type: CHANGE_CHANNEL, status: 'LOADED'}
         ];
         const store = mockStore({}, expectedActions, done);
         fetchMock
