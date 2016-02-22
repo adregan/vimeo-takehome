@@ -6,7 +6,9 @@ const Player = ({video}) => {
   video = video.toJS();
   return (
     <section className="player">
-      <article className="player__embed" dangerouslySetInnerHTML={{__html: video.embed}} />
+      <article className="player__embed">
+        <iframe src={video.embedSrc} width={video.width} height={video.height} frameBorder="0" title={video.name} webkitAllowFullScreen mozallowFullScreen allowFullScreen></iframe>
+      </article>
       
       <aside className="player__details">
         <div className="video-meta">

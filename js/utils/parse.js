@@ -4,33 +4,20 @@ import { maxWidth } from '../config';
 export const parseVideos = (videos) => {
   return videos.map(video => {
     let embed = video.embed.html;
-
-    const embedLinkResults = embed.match(/\"(https:\/\/player.vimeo.com\/video\/[\d]*)\?[\S]*\"/);
-    const fullLink = embedLinkResults[0];
-    const link = embedLinkResults[1];
-    const heightResults = embed.match(/height=\"([\d]*)\"/);
-    const widthResults = embed.match(/width=\"([\d]*)\"/);
-
-    const replaceHeight = heightResults[0];
-    const height = heightResults[1];
-    const replaceWidth = widthResults[0];
-    const width = widthResults[1];
-
+    const id = video.uri.split('/').pop();
+    const embedSrc = `https://player.vimeo.com/video/${id}?badge=1&portrait=1&byline=1&title=1`;
+    const height = video.height;
+    const width = video.width;
     const ratio = width / maxWidth;
-    const newWidth = `width="${maxWidth}"`;
-    const newHeight = `height="${Math.floor(height / ratio)}"`;
-
-    const newLink = `"${link}?badge=1&portrait=1&byline=1&title=1"`;
-
-    embed = embed
-      .replace(fullLink, newLink)
-      .replace(replaceHeight, newHeight)
-      .replace(replaceWidth, newWidth);
+    const adjustedHeight = Math.floor(height / ratio);
 
     return {
       name: video.name,
       description: video.description,
       embed: embed,
+      width: maxWidth,
+      height: adjustedHeight,
+      embedSrc: embedSrc,
       link: video.link,
       image: video.pictures.sizes[2].link,
       creator: video.user.name,
