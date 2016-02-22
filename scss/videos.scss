@@ -21,7 +21,11 @@
     &:before {
       align-items: center;
       background: rgba(255, 255, 255, .5);
-      content: '>';
+      background-image: url('/static/play.svg');
+      background-size: 20%;
+      background-position: center;
+      background-repeat: no-repeat;
+      content: '';
       display: flex;
       flex-direction: column;
       justify-content: center;
