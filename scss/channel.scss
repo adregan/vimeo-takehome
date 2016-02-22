@@ -1,0 +1,25 @@
+.channel {
+  @media (min-width: $desktop) {
+    max-width: 23rem;
+  }
+}
+
+.channel-info {
+  border: 1px solid $faint-grey;
+  border-radius: .3rem;
+  padding: 2rem;
+  &__name {
+    font-size: 1.6rem;
+    margin: 0;
+  }
+  @media (min-width: $desktop) {
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+}
+
+.channel-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

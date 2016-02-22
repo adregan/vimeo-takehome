@@ -1,0 +1,27 @@
+.pagination {
+  margin: 2rem 0;
+}
+
+.page-list {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  &__button {
+    background: $faint-grey;
+    cursor: pointer;
+    font-size: .8rem;
+    font-weight: bold;
+    margin: 0 .2rem;
+    padding: .2rem .4rem;
+    &:hover, &--active {
+      color: white;
+      background: $link;
+    }
+  }
+  &__ellipses {
+    background: none;
+    cursor: default;
+  }
+}

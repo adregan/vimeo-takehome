@@ -1,0 +1,51 @@
+.videos-list {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @media (min-width: $tablet) {
+    width: 41rem;
+  }
+}
+
+.video {
+  cursor: pointer;
+  max-width: (295/$rem)+rem;
+  margin: 1rem 1rem 1rem 0;
+  width: 100%;
+  &--active {
+    position: relative;
+    &:before {
+      align-items: center;
+      background: rgba(255, 255, 255, .5);
+      content: '>';
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+      margin-top: -3rem;
+    }
+  }
+  &__thumbnail {
+    display: block;
+  }
+  &__name {
+    font-size: .8rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  &__meta {
+    color: $light-grey;
+    font-size: .7rem;
+    margin: 0;
+  }
+  &:hover {
+    color: $link;
+    &__name {
+      color: $link;
+    }
+  }
+}

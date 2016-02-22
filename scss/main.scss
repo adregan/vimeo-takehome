@@ -1,0 +1,38 @@
+$rem: 16;
+$dark-grey: #333;
+$light-grey: lighten($dark-grey, 30%);
+$faint-grey: lighten($dark-grey, 70%);
+$tablet: (650/$rem)+rem;
+$desktop: (980/$rem)+rem;
+$link: #4bf;
+
+* {box-style: border-box;}
+
+html, body {height: 100%;}
+
+body {
+  background: white;
+  color: $dark-grey;
+  font-size: 1rem;
+}
+
+p {line-height: 1.618;}
+
+a {
+  color: $dark-grey;
+  font-weight: bold;
+  text-decoration: none;
+  &:hover {
+    color: $link;
+  }
+}
+
+
+@import 'normalize';
+@import 'app';
+@import 'header';
+@import 'video';
+@import 'channel';
+@import 'creator';
+@import 'videos';
+@import 'pagination';
