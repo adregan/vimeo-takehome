@@ -1,4 +1,5 @@
 import React from 'react';
+import Nav from './nav';
 import Player from './player';
 import Header from './header';
 import Channel from './channel';
@@ -10,14 +11,17 @@ import { connect } from 'react-redux';
 const App = ({ loading }) => {
   return (
     <div className="app">
-      {(loading === 'LOADING') && <Loading />}
-      <Header />
-      <Player /> 
-      <div className="channel-videos-wrapper">
-        <Channel />
-        <Videos />
+      <Nav />
+      <div className="staging">
+        {(loading === 'LOADING') && <Loading />}
+        <Header />
+        <Player /> 
+        <div className="channel-videos-wrapper">
+          <Channel />
+          <Videos />
+        </div>
+        <Pagination />
       </div>
-      <Pagination />
     </div>
   );
 };
