@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import marked from 'marked';
 
 const Channel = ({ channel }) => {
   channel = channel.toJS();
@@ -7,7 +8,8 @@ const Channel = ({ channel }) => {
     <section className="channel">
       <div className="channel-info">
         <h1 className="channel-info__name">{channel.name}</h1>
-        <p className="channel-info__description">{channel.description}</p>
+        <p className="channel-info__description"
+          dangerouslySetInnerHTML={{__html: channel.description && marked(channel.description, {sanitize: true})}} />
         <div className="creator">
           <div className="creator__container">
             <img className="creator__avatar" src={channel.creatorAvatar} />
