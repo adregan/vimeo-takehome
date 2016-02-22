@@ -26,7 +26,7 @@ const Videos = ({ videos, currentVideo, dispatch }) => {
           current = false;
         } 
         return (
-          <li className={classes} key={i} onClick={(e) => {!current && dispatch(updateCurrentVideo(i))}}>
+          <li className={classes} key={i} onClick={(e) => {!current && dispatch(updateCurrentVideo(i));}}>
             <img className="video__thumbnail" src={video.image} />
             <p className="video__name">
               {shorten(video.name, 36)}
