@@ -6,6 +6,6 @@ export const updateCurrentVideo = (index) => {
   return (dispatch, getState) => {
     const { videos } = getState();
     const video = videos.get(index);
-    return {type: UPDATE_CURRENT_VIDEO, video};
+    return dispatch({type: UPDATE_CURRENT_VIDEO, video});
   };
 };
