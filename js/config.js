@@ -9,3 +9,4 @@ export const channels = [
   '321143', '283818', '127296', '25080', '238295'
 ];
 export const pageSize = 10;
+export const maxWidth = 980;
