@@ -26,6 +26,7 @@ export const parseChannel = (channel, id) => {
     header: channel.header.sizes[0].link,
     created: channel.created_time,
     createdAgo: moment(channel.created_time).fromNow(),
+    description: channel.description,
     userCount: channel.metadata.connections.users.total,
     videoCount: channel.metadata.connections.videos.total,
     creator: channel.user.name,
