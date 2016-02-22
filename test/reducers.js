@@ -3,7 +3,7 @@
 import expect from 'expect';
 import Immutable from 'immutable';
 import range from '../js/utils/range';
-import { UPDATE_CHANNEL } from '../js/actions/channel';
+import { UPDATE_CHANNEL, CHANGE_CHANNEL } from '../js/actions/channel';
 import { channel } from '../js/reducers/channel';
 import { UPDATE_VIDEOS } from '../js/actions/videos';
 import { videos } from '../js/reducers/videos';
@@ -11,6 +11,7 @@ import { UPDATE_CURRENT_VIDEO } from '../js/actions/currentVideo';
 import { currentVideo } from '../js/reducers/currentVideo';
 import { UPDATE_CURRENT_PAGE } from '../js/actions/pagination';
 import { currentPage } from '../js/reducers/currentPage';
+import { loading } from '../js/reducers/loading';
 
 describe('Reducers', () => {
   describe('channel', () => {
@@ -49,6 +50,17 @@ describe('Reducers', () => {
 
       expect(currentVideo(Immutable.Map(), {type: UPDATE_CURRENT_VIDEO, video}))
         .toEqual(video);
+    });
+  });
+  describe('loading', () => {
+    it('should return the initial state', () => {
+      expect(loading(undefined, {})).toEqual('LOADING');
+    });
+    it('should handle CHANGE_CHANNEL action', () => {
+      const state = 'LOADED';
+
+      expect(loading(state, {type: CHANGE_CHANNEL, status: 'LOADING'}))
+        .toEqual('LOADING');
     });
   });
   describe('videos', () => {
