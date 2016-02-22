@@ -7,6 +7,7 @@ import { UPDATE_CURRENT_PAGE, changePage } from '../js/actions/pagination';
 import { UPDATE_CHANNEL, changeChannel} from '../js/actions/channel';
 import fetchMock from 'fetch-mock';
 import mock from './mock';
+import { pageSize } from '../js/config';
 
 const mockStore = configureMockStore([thunk]);
 const link = 'https://api.vimeo.com/channels/12345';
@@ -25,7 +26,7 @@ describe('Async Action Creators', () => {
         const store = mockStore({}, expectedActions, done);
         fetchMock
           .mock(link, mock.ApiChannel)
-          .mock(`${link}/videos?per_page=10&page=1`, {data: mock.ApiVideos, page: 1});
+          .mock(`${link}/videos?per_page=${pageSize}&page=1`, {data: mock.ApiVideos, page: 1});
 
         store.dispatch(changeChannel(12345));
         fetchMock.restore();
@@ -49,7 +50,7 @@ describe('Async Action Creators', () => {
         }, expectedActions, done);
 
         fetchMock
-          .mock(`${link}/videos?per_page=10&page=${page}`, {data: mock.ApiVideos});
+          .mock(`${link}/videos?per_page=${pageSize}&page=${page}`, {data: mock.ApiVideos});
 
         store.dispatch(changePage(page));
         fetchMock.restore();

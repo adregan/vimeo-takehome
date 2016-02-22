@@ -42,12 +42,8 @@ describe('Action Creators', () => {
   describe('videos', () => {
     describe('updateVideos', () => {
       it('should create an action to update the videos', () => {
-        const videoData = range(10).map(i => {
-          return Immutable.Map({name: `Video ${i + 1}`});
-        });
-        const videos = Immutable.List(videoData);
-        const expectedAction = {type: UPDATE_VIDEOS, videos};
-        expect(updateVideos(videoData)).toEqual(expectedAction);
+        const expectedAction = {type: UPDATE_VIDEOS, videos: mock.videos};
+        expect(updateVideos(mock.videoData)).toEqual(expectedAction);
       });
     });
   });

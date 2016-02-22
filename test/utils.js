@@ -6,6 +6,7 @@ import range from '../js/utils/range';
 import vimeo, { VIDEOS, CHANNEL } from '../js/utils/vimeo';
 import expect from 'expect';
 import fetchMock from 'fetch-mock';
+import { pageSize } from '../js/config';
 
 describe('Utils', () => {
   describe('randomChannel', () => {
@@ -64,7 +65,10 @@ describe('Utils', () => {
     });
     it('should fetch channel videos by id', () => {
       const mockResponse = {total: 100, page: 1, paging: {}, per_page: 25, data: []};
-      fetchMock.mock('https://api.vimeo.com/channels/number-one?per_page=10&page=1', mockResponse);
+      fetchMock.mock(
+        `https://api.vimeo.com/channels/number-one?per_page=${pageSize}&page=1`, 
+        mockResponse
+      );
       vimeo('number-one', VIDEOS)
         .then(data => {
           expect(data).toEqual(mockResponse);
@@ -86,11 +90,11 @@ describe('Utils', () => {
       const mockPage1 = {total: 100, page: 1, paging: {}, per_page: 10, data: []};
       const mockResponse = {total: 100, page: page, paging: {}, per_page: 10, data: []};
       fetchMock.mock(
-        'https://api.vimeo.com/channels/number-one?per_page=10&page=1',
+        `https://api.vimeo.com/channels/number-one?per_page=${pageSize}&page=1`,
         mockPage1
       );
       fetchMock.mock(
-        `https://api.vimeo.com/channels/number-one?per_page=10&page=${page}`,
+        `https://api.vimeo.com/channels/number-one?per_page=${pageSize}&page=${page}`,
         mockResponse
       );
 
