@@ -15,7 +15,8 @@ const ApiVideos = range(1, 11).map(i => {
       sizes: [{link: ''}, {link: ''}, {link: ''}]
     },
     user: {
-      name: 'Duncan Regan'
+      name: 'Duncan Regan',
+      link: 'http://something.com'
     },
     stats: {
       plays: 123
