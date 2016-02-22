@@ -1,13 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const videos = ({ videos }) => {
+const Videos = ({ videos }) => {
   return (
     <section className="videos">
 
     </section>
   );
-}
+};
 
 const select = (state) => {
-  videos: state.videos
-}
+  return {
+    videos: state.videos
+  };
+};
+
+export default connect(select)(Videos);
