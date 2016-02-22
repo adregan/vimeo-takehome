@@ -7,6 +7,9 @@ const ApiVideos = range(1, 11).map(i => {
     name: `Video ${i}`, 
     description: 'Hello Hello',
     created_time: '2016-02-21T23:09:04+00:00',
+    uri: '/videos/1238493',
+    height: 5000,
+    width: 3040,
     embed: {
       html: '<iframe src="https://player.vimeo.com/video/141891887?badge=1&amp;portrait=1&amp;byline=1&amp;title=1" width="980" height="551" frameborder="0" title="Covers" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>'
     },
