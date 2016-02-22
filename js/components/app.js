@@ -1,5 +1,5 @@
 import React from 'react';
-import Video from './video';
+import Player from './player';
 import Header from './header';
 import Channel from './channel';
 import Pagination from './pagination';
@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      { /*<Video /> */ }
+      <Player /> 
       <div className="channel-videos-wrapper">
         <Channel />
         <Videos />

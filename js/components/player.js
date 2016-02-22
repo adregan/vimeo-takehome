@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Video = ({video}) => {
+const Player = ({video}) => {
   video = video.toJS();
   return (
-    <section className="video">
+    <section className="player">
       <h1 className="video__title">
         {video.name}
       </h1>
@@ -41,4 +41,4 @@ const select = (state) => {
 };
 
 
-export default connect(select)(Video);
+export default connect(select)(Player);
