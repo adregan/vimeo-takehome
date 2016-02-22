@@ -21,10 +21,10 @@ describe('Async Action Creators', () => {
         {type: UPDATE_CURRENT_VIDEO, video: mock.videos.get(0)}
       ];
       const store = mockStore({}, expectedActions, done);
-
+      const link = 'https://api.vimeo.com/channels/12345'
       fetchMock
-        .mock('https://api.vimeo.com/channels/12345', mock.ApiChannel)
-        .mock('https://api.vimeo.com/channels/12345/videos?per_page=10&page=1', mock.ApiVideos);
+        .mock(link, mock.ApiChannel)
+        .mock(`${link}/videos?per_page=10&page=1`, mock.ApiVideos);
 
       store.dispatch(changeChannel(12345));
       fetchMock.restore();
