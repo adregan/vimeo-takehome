@@ -2,17 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateCurrentVideo } from '../actions/currentVideo';
 
+const shorten = (text, limit) => {
+  if (!text) {return '';}
+  if (text.length > limit) {
+    return text.slice(0, limit) + '...';
+  }
+  return text;
+};
+
 const Videos = ({ videos, currentVideo, dispatch }) => {
   videos = videos.toJS();
-  currentVideo = currentVideo.toJS();
+  let { link } = currentVideo.toJS();
   return (
-    <ul className="videos">
+    <ul className="videos-list">
       {videos.map((video, i) => {
+        let classes = (video.link === link) ? 'video video--active' : 'video'; 
         return (
-          <li className="video" key={i} onClick={(e) => dispatch(updateCurrentVideo(i))}>
+          <li className={classes} key={i} onClick={(e) => dispatch(updateCurrentVideo(i))}>
             <img className="video__thumbnail" src={video.image} />
             <p className="video__name">
-              {video.name}
+              {shorten(video.name, 36)}
             </p>
             <p className="video__meta">
               from <strong>{video.creator}</strong>
