@@ -1,3 +1,7 @@
+import vimeo, { VIDEOS } from '../utils/vimeo';
+import { parseVideos } from '../utils/parse';
+import { updateVideos } from './videos';
+
 /* Action Types */
 export const UPDATE_CURRENT_PAGE = 'UPDATE_CURRENT_PAGE';
 
@@ -8,9 +12,19 @@ export const updateCurrentPage = (page) => {
 
 export const changePage = (page) => {
   return (dispatch, getState) => {
-    const { channel } = getState();
-    // To do make API call to get the page indicated
-    // dispatch updateVideos
-    // dispatch updateCurrentPage
+    const { channel, currentPage } = getState();
+    const { id, videoCount } = channel.toJS();
+
+    if (page === currentPage || page > Math.ceil(videoCount / 10)) {
+      return;
+    }
+
+    vimeo(id, VIDEOS, page)
+      .then(videos => {
+        const videoData = parseVideos(videos.data);
+        dispatch(updateCurrentPage(page));
+        return dispatch(updateVideos(videoData));
+      })
+      .catch(err => console.error(err));
   };
 };
