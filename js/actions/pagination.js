@@ -1,6 +1,7 @@
 import vimeo, { VIDEOS } from '../utils/vimeo';
 import { parseVideos } from '../utils/parse';
 import { updateVideos } from './videos';
+import { pageSize } from '../config';
 
 /* Action Types */
 export const UPDATE_CURRENT_PAGE = 'UPDATE_CURRENT_PAGE';
@@ -15,7 +16,7 @@ export const changePage = (page) => {
     const { channel, currentPage } = getState();
     const { id, videoCount } = channel.toJS();
 
-    if (page === currentPage || page > Math.ceil(videoCount / 10)) {
+    if (page === currentPage || page > Math.ceil(videoCount / pageSize)) {
       return;
     }
 
