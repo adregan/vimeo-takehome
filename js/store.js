@@ -4,9 +4,10 @@ import { channel } from './reducers/channel';
 import { videos } from './reducers/videos';
 import { currentPage } from './reducers/currentPage';
 import { currentVideo } from './reducers/currentVideo';
+import { loading } from './reducers/loading';
 
 const reducer = combineReducers({
-  channel, videos, currentPage, currentVideo
+  channel, videos, currentPage, currentVideo, loading
 });
 
 const configureStore = (initialState) => {
