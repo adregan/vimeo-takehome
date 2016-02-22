@@ -43,7 +43,7 @@ const ApiChannel = {
   metadata: {
     connections: {
       users: {total: 200},
-      videos: {total: 100}
+      videos: {total: 1000}
     }
   },
   user: {
@@ -53,7 +53,7 @@ const ApiChannel = {
   }
 };
 
-const channelData = parseChannel(ApiChannel);
+const channelData = parseChannel(ApiChannel, 12345);
 const channel = Immutable.Map(channelData);
 
 export default {

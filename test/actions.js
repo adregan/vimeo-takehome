@@ -5,7 +5,9 @@ import Immutable from 'immutable';
 import { UPDATE_CHANNEL, updateChannel } from '../js/actions/channel';
 import { UPDATE_VIDEOS, updateVideos } from '../js/actions/videos';
 import { UPDATE_CURRENT_PAGE, updateCurrentPage } from '../js/actions/pagination';
+import { UPDATE_CURRENT_VIDEO, setCurrentVideo } from '../js/actions/currentVideo';
 import range from '../js/utils/range';
+import mock from './mock';
 
 describe('Action Creators', () => {
   describe('channel', () => {
@@ -46,6 +48,16 @@ describe('Action Creators', () => {
         const videos = Immutable.List(videoData);
         const expectedAction = {type: UPDATE_VIDEOS, videos};
         expect(updateVideos(videoData)).toEqual(expectedAction);
+      });
+    });
+  });
+  describe('currentVideo', () => {
+    describe('setCurrentVideo', () => {
+      it('should create an action to update the current video', () => {
+        const video = mock.videos.get(0);
+        const expectedAction = {type: UPDATE_CURRENT_VIDEO, video};
+        const currentVideo = mock.videoData[0];
+        expect(setCurrentVideo(currentVideo)).toEqual(expectedAction);
       });
     });
   });
