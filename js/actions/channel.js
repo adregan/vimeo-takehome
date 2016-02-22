@@ -1,5 +1,9 @@
 import Immutable from 'immutable';
 import vimeo, { CHANNEL, VIDEOS } from '../utils/vimeo';
+import { parseVideos, parseChannel } from '../utils/parse';
+import { updateVideos } from './videos';
+import { updateCurrentPage } from './pagination';
+import { updateCurrentVideo } from './currentVideo';
 
 /* Action Types */
 export const CHANGE_CHANNEL = 'CHANGE_CHANNEL';
@@ -18,10 +22,13 @@ export const changeChannel = (channelId) => {
       vimeo(channelId, VIDEOS)
     ])
     .then(([channel, videos]) => {
-      console.log(channel);
-    // dispatch updateChannel
-      console.log(videos);
-    // dispatch updateVideos & updateCurrentVideo(videos[0])
+      const channelData = parseChannel(channel, channelId);
+      const videoData = parseVideos(videos.data);
+      const page = videos.page;
+      dispatch(updateChannel(channelData));
+      dispatch(updateVideos(videoData));
+      dispatch(updateCurrentPage(page));
+      dispatch(updateCurrentVideo(0));
     })
     .catch(err => console.error(err));
   };
