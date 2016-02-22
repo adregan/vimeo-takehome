@@ -3,7 +3,7 @@ import vimeo, { CHANNEL, VIDEOS } from '../utils/vimeo';
 import { parseVideos, parseChannel } from '../utils/parse';
 import { updateVideos } from './videos';
 import { updateCurrentPage } from './pagination';
-import { updateCurrentVideo } from './currentVideo';
+import { setCurrentVideo } from './currentVideo';
 
 /* Action Types */
 export const CHANGE_CHANNEL = 'CHANGE_CHANNEL';
@@ -25,10 +25,12 @@ export const changeChannel = (channelId) => {
       const channelData = parseChannel(channel, channelId);
       const videoData = parseVideos(videos.data);
       const page = videos.page;
+      const currentVideo = videoData[0];
+
       dispatch(updateChannel(channelData));
       dispatch(updateVideos(videoData));
       dispatch(updateCurrentPage(page));
-      dispatch(updateCurrentVideo(0));
+      dispatch(setCurrentVideo(currentVideo));
     })
     .catch(err => console.error(err));
   };
