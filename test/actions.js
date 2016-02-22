@@ -6,7 +6,6 @@ import { UPDATE_CHANNEL, updateChannel } from '../js/actions/channel';
 import { UPDATE_VIDEOS, updateVideos } from '../js/actions/videos';
 import { UPDATE_CURRENT_PAGE, updateCurrentPage } from '../js/actions/pagination';
 import { UPDATE_CURRENT_VIDEO, setCurrentVideo } from '../js/actions/currentVideo';
-import range from '../js/utils/range';
 import mock from './mock';
 
 describe('Action Creators', () => {
