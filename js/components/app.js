@@ -4,10 +4,13 @@ import Header from './header';
 import Channel from './channel';
 import Pagination from './pagination';
 import Videos from './videos';
+import Loading from './loading';
+import { connect } from 'react-redux';
 
-const App = () => {
+const App = ({ loading }) => {
   return (
     <div className="app">
+      {(loading === 'LOADING') && <Loading />}
       <Header />
       <Player /> 
       <div className="channel-videos-wrapper">
@@ -19,4 +22,10 @@ const App = () => {
   );
 };
 
-export default App;
+const select = (state) => {
+  return {
+    loading: state.loading
+  };
+};
+
+export default connect(select)(App);
