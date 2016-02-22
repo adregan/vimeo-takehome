@@ -7,7 +7,8 @@ import { changeChannel } from './actions/channel';
 import App from './components/app';
  
 const store = configureStore({});
-store.dispatch(changeChannel(randomChannel()));
+// The Stereo 3D Channel
+store.dispatch(changeChannel(5943));
 
 window.onload = () => {
   ReactDOM.render(
