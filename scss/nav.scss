@@ -1,0 +1,29 @@
+.channel-nav {
+  background: $faint-grey;
+  border-bottom: 1px solid $light-grey;
+  display: flex;
+  padding: 0 2rem;
+  position: fixed; top: 0; left: 0; right: 0;
+  width: 100%;
+  z-index: 500;
+  &__current {
+    line-height: 1;
+    font-weight: bold;
+    margin: 1rem;
+  }
+  &__change {
+    align-self: flex-end;
+    border: none;
+    border-radius: .3rem;
+    background: $link;
+    color: white;
+    font-size: .9rem;
+    font-weight: bold;
+    padding: .5rem 1rem;
+    margin: .5rem 0;
+  }
+  &__github {
+    position: absolute; right: 5rem;
+    margin: 1rem 0;
+  }
+}

@@ -1,6 +1,7 @@
 .channel {
   @media (min-width: $desktop) {
-    max-width: 23rem;
+    max-width: 20rem;
+    overflow: hidden;
   }
 }
 
